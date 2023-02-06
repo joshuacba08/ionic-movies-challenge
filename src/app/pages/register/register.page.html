@@ -1,9 +1,51 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>register</ion-title>
+    <ion-buttons slot="start">
+      <ion-button color="danger" (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title> Register </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+
+    <ion-item>
+      <ion-label position="floating">First Name</ion-label>
+      <ion-input formControlName="fname" type="text"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="registerForm.controls['fname'].errors && registerForm.controls['fname'].touched " lines="none">
+      <ion-text color="danger" class="form-error">
+        Please complete this field.
+      </ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Last Name</ion-label>
+      <ion-input (change)="changeField($event)" formControlName="lname" type="text"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="registerForm.controls['lname'].errors && registerForm.controls['lname'].touched" lines="none">
+      <ion-text color="danger" class="form-error">
+        Please complete this field.
+      </ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">E-Mail</ion-label>
+      <ion-input formControlName="email" type="text"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="registerForm.controls['email'].errors && registerForm.controls['email'].touched" lines="none">
+      <ion-text color="danger" class="form-error">
+        Please enter a valid email address.
+      </ion-text>
+    </ion-item>
+
+    <ion-button expand="block" shape="round">
+      Register
+    </ion-button>
+
+  </form>
 
 </ion-content>

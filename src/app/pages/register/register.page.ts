@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -7,9 +9,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterPage implements OnInit {
 
-  constructor() { }
+  registerForm: FormGroup = this.formBuilder.group({
+    fname:['',[Validators.required]],
+    lname:['',[Validators.required]],
+    email:['',[Validators.required, Validators.email]],
+    password:['',[Validators.required, Validators.maxLength(50), Validators.minLength(6)]],
+    passwordConfirm:['',[Validators.required, Validators.maxLength(50), Validators.minLength(6)]],
 
-  ngOnInit() {
+
+  })
+
+  constructor(
+    private modalCtrl: ModalController,
+    private formBuilder: FormBuilder
+  ) {}
+
+  ngOnInit() {}
+
+
+  onSubmit(){
+    console.log(this.registerForm)
   }
 
+  changeField(event:any){
+    console.log(event);
+    console.log(this.registerForm)
+  }
+
+  cancel() {
+    this.modalCtrl.dismiss();
+  }
 }

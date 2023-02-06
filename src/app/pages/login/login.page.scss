@@ -1,0 +1,48 @@
+
+
+.avatar-container{
+  display: flex;
+  width: 100vw;
+  height: 40vh;
+  justify-content: center;
+  align-items: flex-end;
+  ion-avatar{
+    width: 140px;
+    height: 140px;
+  }
+}
+
+.login-form{
+  width: 80vw;
+  max-width: 400px;
+  margin: 40px auto 0 auto;
+
+  ion-list{
+    background: none;
+  }
+
+  ion-item{
+    --background:transparent;
+    margin-bottom: 10px;
+  }
+
+  ion-input{
+    --background:transparent;
+  }
+
+  &__submit{
+    margin-top: 30px;
+  }
+  .link-to-register{
+    display: block;
+    text-align: center;
+    margin: 20px;
+  }
+}
+
+
+
+
+
+
+
