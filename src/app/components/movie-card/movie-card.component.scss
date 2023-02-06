@@ -1,0 +1,19 @@
+.movie-card{
+  display: grid;
+  grid-template: 200px / 1fr 1fr;
+  overflow: hidden;
+
+  background-color: #9ca3af;
+
+  &_image{
+    img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__info{
+    
+  }
+}
