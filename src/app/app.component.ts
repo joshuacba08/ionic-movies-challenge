@@ -1,4 +1,13 @@
 import { Component } from '@angular/core';
+import { StorageService } from './services/storage.service';
+import { UiService } from './services/ui.service';
+import { Router } from '@angular/router';
+
+interface Page{
+  title: string;
+  url: string;
+  icon: string;
+}
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -6,13 +15,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public appPages = [
-    { title: 'Inbox', url: '/folder/Inbox', icon: 'mail' },
-    { title: 'Outbox', url: '/folder/Outbox', icon: 'paper-plane' },
-    { title: 'Favorites', url: '/folder/Favorites', icon: 'heart' },
-    { title: 'Archived', url: '/folder/Archived', icon: 'archive' },
-    { title: 'Trash', url: '/folder/Trash', icon: 'trash' },
-    { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
+    { title: 'Logout', url: 'login', icon: 'power' },
+    { title: 'Home', url: 'home', icon: 'home' }
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor() {}
+  constructor(private storageService:StorageService, private uiService:UiService, private router:Router) {}
+
+  async goTo(page:Page){
+    if(page.title === 'Logout'){
+      await this.storageService.deleteStorage();
+      this.uiService.presentToast('See You soon 👋',3000, 'primary')
+      this.router.navigate(['/login']);
+    }else{
+      this.router.navigate([page.url]);
+    }
+  }
 }

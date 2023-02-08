@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="danger" (click)="cancel()">Cerrar</ion-button>
+    </ion-buttons>
+    <ion-title> Edit Movie </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form class="form-container" [formGroup]="movieForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">Title</ion-label>
+      <ion-input required formControlName="title" type="text"></ion-input>
+    </ion-item>
+    <ion-item
+      lines="none"
+      *ngIf="movieForm.controls['title'].errors && movieForm.controls['title'].touched "
+    >
+      <ion-text color="danger" class="form-error">
+        Please complete this field.
+      </ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Last Name</ion-label>
+      <ion-textarea [autoGrow]="true" formControlName="overview" type="text" required></ion-textarea>
+    </ion-item>
+
+    <ion-item
+      *ngIf="movieForm.controls['overview'].errors && movieForm.controls['overview'].touched"
+      lines="none"
+    >
+      <ion-text color="danger" class="form-error">
+        Please complete this field.
+      </ion-text>
+    </ion-item>
+
+    <ion-button type="submit" expand="block" shape="round">
+      edit
+    </ion-button>
+  </form>
+</ion-content>

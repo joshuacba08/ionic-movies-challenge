@@ -1,16 +1,8 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes, CanActivate } from '@angular/router';
+import { UserGuard } from './guards/user.guard';
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'folder/Inbox',
-    pathMatch: 'full'
-  },
-  {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
-  },
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
@@ -21,12 +13,27 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
+    canLoad:[ UserGuard ],
   },
   {
     path: 'detail-movie',
     loadChildren: () => import('./pages/detail-movie/detail-movie.module').then( m => m.DetailMoviePageModule)
-  }
+  },
+  {
+    path: 'edit-movie',
+    loadChildren: () => import('./modals/edit-movie/edit-movie.module').then( m => m.EditMoviePageModule)
+  },
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch:'prefix'
+  },
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
 ];
 
 @NgModule({

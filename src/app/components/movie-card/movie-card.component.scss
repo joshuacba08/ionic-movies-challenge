@@ -1,0 +1,64 @@
+.movie-card{
+  display: grid;
+  grid-template: 200px/1fr;
+  overflow: hidden;
+  background-color: var(--ion-color-light);
+
+}
+
+.truncate{
+  display: -webkit-box;
+  -webkit-line-clamp: var(--line-clamp, 2);
+  -webkit-box-orient: vertical;
+  word-break: var(--word-break, 'none');
+  overflow: hidden;
+  hyphens: auto;
+  text-align: var(--align, left);
+  --is-single-line: 1 - Clamp(0, Calc(var(--line-clamp) - 1), var(--line-clamp));
+  --delay: Calc(-1s * (var(--is-single-line, 1) - 1));
+  animation: states 1s var(--delay) paused;
+
+  @keyframes states {
+      0% { word-break: break-all; }
+  }
+}
+
+
+ion-item{
+  --inner-padding-end:none;
+  --inner-padding-top:none;
+  --inner-padding-start:none;
+  --padding-start:none;
+
+}
+
+item-native{
+  padding-left: 0 !important;
+}
+
+ion-item-sliding .item{
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+
+
+  .movie-card__image{
+
+    width:50%;
+    height: 200px;
+    img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .movie-card__info{
+    width:50%;
+    color:var(--ion-color-dark);
+    padding-left: 10px;
+    .info__title{
+      margin: 0;
+    }
+  }
+}

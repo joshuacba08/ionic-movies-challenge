@@ -1,9 +1,88 @@
-<ion-header>
+<ion-header class="ion-no-border" translucent>
   <ion-toolbar>
-    <ion-title>register</ion-title>
+
+    <ion-buttons slot="start" >
+      <ion-back-button
+        defaultHref="/login"
+        text="atrás"
+      ></ion-back-button>
+    </ion-buttons>
+
+    <ion-title class="ion-text-capitalize">Register</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <form class="form-container" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">First Name</ion-label>
+      <ion-input required formControlName="fname" type="text"></ion-input>
+    </ion-item>
+    <ion-item
+      *ngIf="registerForm.controls['fname'].errors && registerForm.controls['fname'].touched "
+      lines="none"
+    >
+      <ion-text color="danger" class="form-error">
+        Please complete this field.
+      </ion-text>
+    </ion-item>
 
+    <ion-item>
+      <ion-label position="floating">Last Name</ion-label>
+      <ion-input
+        formControlName="lname"
+        type="text"
+        required
+      ></ion-input>
+    </ion-item>
+    <ion-item
+      *ngIf="registerForm.controls['lname'].errors && registerForm.controls['lname'].touched"
+      lines="none"
+    >
+      <ion-text color="danger" class="form-error">
+        Please complete this field.
+      </ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">E-Mail</ion-label>
+      <ion-input required formControlName="email" type="email"></ion-input>
+    </ion-item>
+    <ion-item
+      *ngIf="registerForm.controls['email'].errors && registerForm.controls['email'].touched"
+      lines="none"
+    >
+      <ion-text color="danger" class="form-error">
+        Please enter a valid email address.
+      </ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input required formControlName="password" type="password"></ion-input>
+    </ion-item>
+    <ion-item
+      *ngIf="registerForm.controls['password'].errors && registerForm.controls['password'].touched"
+      lines="none"
+    >
+      <ion-text color="danger" class="form-error">
+        Password must contain between 6 and 50 characters
+      </ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Confirm password</ion-label>
+      <ion-input required (input)="verifyPass($event)" formControlName="passwordConfirm" type="password"></ion-input>
+    </ion-item>
+    <ion-item
+      *ngIf="showErrorEmail"
+      lines="none"
+    >
+      <ion-text color="danger" class="form-error">
+        Password confirmation does not match
+      </ion-text>
+    </ion-item>
+
+    <ion-button type="submit" expand="block" shape="round"> Register </ion-button>
+  </form>
 </ion-content>
