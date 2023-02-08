@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  endpointServer: 'http://localhost:3000/api/v1'
+  endpointServer: 'https://ionic-movie-challenge-server-production.up.railway.app/api/v1'
 };
