@@ -15,7 +15,6 @@ export class UserGuard implements CanActivate {
 
   async canLoad(): Promise<boolean | UrlTree> {
     this.user = await this.storageService.getStorageByKey('user');
-    console.log(this.user);
     if(this.user){
       return true;
     }else{
@@ -26,7 +25,6 @@ export class UserGuard implements CanActivate {
 
   async canActivate(): Promise<boolean | UrlTree> {
     this.user = await this.storageService.getStorageByKey('user');
-    console.log(this.user);
     if(this.user){
       return true;
     }else{

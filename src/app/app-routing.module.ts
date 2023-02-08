@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes, CanActivate } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { UserGuard } from './guards/user.guard';
 
 const routes: Routes = [
@@ -23,11 +23,6 @@ const routes: Routes = [
   {
     path: 'edit-movie',
     loadChildren: () => import('./modals/edit-movie/edit-movie.module').then( m => m.EditMoviePageModule)
-  },
-  {
-    path: '',
-    redirectTo: 'login',
-    pathMatch:'prefix'
   },
   {
     path: '',
