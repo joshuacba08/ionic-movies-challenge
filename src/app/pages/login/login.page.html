@@ -1,11 +1,17 @@
 <ion-content>
-  <div class="avatar-container">
-    <ion-avatar>
-      <img
-        src="https://res.cloudinary.com/ionicimagesbank/image/upload/v1675629518/trainingAssets/default-image-icon-missing-picture-page-vector-40546530_rsdqhb.jpg"
-      />
-    </ion-avatar>
-  </div>
+
+    <ion-slides mode="ios" pager="ios" scrollbar="ios">
+      <ion-slide *ngFor="let avatar of avatars">
+        <div class="avatar-container">
+          <ion-avatar>
+            <img
+              [src]="'../../../assets/avatars/'+avatar.img"
+            />
+          </ion-avatar>
+        </div>
+      </ion-slide>
+    </ion-slides>
+
 
   <form class="login-form" [formGroup]="loginForm" (ngSubmit)="submit()">
     <ion-list>

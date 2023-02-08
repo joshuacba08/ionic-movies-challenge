@@ -1,7 +1,7 @@
 import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LoginRequest, RegisterRequest } from '../../interfaces/auth';
+import { LoginRequest, RegisterRequest, User } from '../../interfaces/auth';
 
 
 
@@ -14,7 +14,7 @@ export class AuthService {
 
 
   login(data: LoginRequest){
-    return this.httpClient.post(`${environment.endpointServer}/auth/login`, data);
+    return this.httpClient.post<User>(`${environment.endpointServer}/auth/login`, data);
   }
 
   register(data: RegisterRequest){

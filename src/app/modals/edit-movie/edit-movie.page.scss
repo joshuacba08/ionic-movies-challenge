@@ -1,0 +1,11 @@
+.form-container{
+  display: flex;
+  flex-direction: column;
+  width: 90vw;
+  margin: 30px auto;
+  gap: 10px;
+
+  ion-button{
+    margin-top: 60px;
+  }
+}

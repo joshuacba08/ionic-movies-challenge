@@ -17,7 +17,7 @@
 
             <div class="info__rate">
               <h6>Rate</h6>
-              <ion-icon slot="start" [name]="item" *ngFor="let item of stars; index as i" (click)="handleVote(i+1)"></ion-icon>
+              <ion-icon color="warning" slot="start" [name]="item" *ngFor="let item of stars; index as i" (click)="handleVote(i+1)"></ion-icon>
               <span> ({{ movie.vote_count }})</span>
             </div>
           </div>

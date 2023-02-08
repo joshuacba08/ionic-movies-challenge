@@ -6,10 +6,11 @@
   height: 40vh;
   justify-content: center;
   align-items: flex-end;
-  ion-avatar{
+  ion-avatar, .swiper-slide img {
     width: 140px;
     height: 140px;
   }
+  padding-bottom: 60px;
 }
 
 .login-form{

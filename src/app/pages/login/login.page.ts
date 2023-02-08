@@ -2,8 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { UiService } from '../../services/ui.service';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -20,22 +21,58 @@ export class LoginPage implements OnInit, OnDestroy {
       [Validators.required, Validators.maxLength(50), Validators.minLength(6)],
     ],
   });
+  avatars = [
+    {
+      img: 'av-1.png',
+      seleccionado: true
+    },
+    {
+      img: 'av-2.png',
+      seleccionado: false
+    },
+    {
+      img: 'av-3.png',
+      seleccionado: false
+    },
+    {
+      img: 'av-4.png',
+      seleccionado: false
+    },
+    {
+      img: 'av-5.png',
+      seleccionado: false
+    },
+    {
+      img: 'av-6.png',
+      seleccionado: false
+    },
+    {
+      img: 'av-7.png',
+      seleccionado: false
+    },
+    {
+      img: 'av-8.png',
+      seleccionado: false
+    },
+];
 
   constructor(
+    private storageService: StorageService,
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private uiService:UiService
+    private uiService:UiService,
   ) {}
 
   ngOnInit() {}
 
   submit() {
-    console.log(this.loginForm.valid);
     if (this.loginForm.valid) {
     this.loginSubscription$ =  this.authService.login(this.loginForm.value).subscribe({
-      next: (res) => {
-        this.router.navigate(['/'])
+      next: async (res) => {
+        await this.storageService.saveUser(res)
+        this.uiService.presentToast('Wellcome to Ionic Movies 👋', 3000, 'success');
+        this.router.navigate(['/home']);
       },
       error: (error) =>{
         this.uiService.presentToast('Something are wrong',3000,'danger');
@@ -48,7 +85,8 @@ export class LoginPage implements OnInit, OnDestroy {
     this.showPass = !this.showPass;
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
       this.loginSubscription$.unsubscribe();
+
   }
 }

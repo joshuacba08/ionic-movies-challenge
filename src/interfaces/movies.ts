@@ -8,6 +8,11 @@ export interface UpdateMovieResp{
   data: Movie;
 }
 
+export interface EditMovieReq{
+  title:        string;
+  overview:     string;
+}
+
 export interface VoteReq{
   vote_average: number;
   vote_count:   number;

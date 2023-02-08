@@ -17,7 +17,9 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.folder = this.activatedRoute.snapshot.paramMap.get('id') as string;
-    this.getMovies()
+    this.moviesService.newMoviesInfo$.subscribe(
+      res => this.getMovies()
+    )
   }
 
 
