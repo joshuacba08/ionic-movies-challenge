@@ -8,5 +8,8 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <app-movie-card></app-movie-card>
+  <app-movie-card
+    *ngFor="let movie of movies$ | async"
+    [movie]="movie"
+  ></app-movie-card>
 </ion-content>
